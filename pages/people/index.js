@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
+import Link from '../../components/Link';
 import styles from '../../styles/Home.module.css';
 import * as API from '../../constants';
 

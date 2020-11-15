@@ -1,15 +1,25 @@
 import AboutGuard from './about-guard';
 import PersonGuard from './person-guard';
 
-const GuardConfig = [
-  {
-    path: '/about',
-    guard: AboutGuard
-  },
-  {
-    path: '/people/[id]',
-    guard: PersonGuard
-  }
-];
+const Guards = {
+  routes: [
+    {
+      path: '/about',
+      guard: AboutGuard,
+    },
+    {
+      path: '/people/[id]',
+      guard: PersonGuard,
+    },
+  ],
+  check: (url, router) => {
+    console.log(url, JSON.parse(router));
+    const { guard } = Guards.routes.find((c) => c.path === url) || {
+      guard: () => ({ canActivate: true }),
+    };
 
-export { GuardConfig };
+    return guard();
+  },
+};
+
+export { Guards };

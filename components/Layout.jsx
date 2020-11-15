@@ -4,19 +4,16 @@ import Nav from './Nav';
 import Footer from './Footer';
 
 import Router from 'next/router';
-import { GuardConfig } from '../route-guards/guard.config';
+import { Guards } from '../route-guards/guard.config';
 
 Router.ready(() => {
   Router.router.events.on('routeChangeStart', (url) => {
-    const { guard } = GuardConfig.find((c) => c.path === url) || {
-      guard: null,
-    };
-
     setTimeout(() => {
-      if (!guard || !guard()) {
+      const { canActivate } = Guards.check(url, JSON.stringify(Router));
+      if (!canActivate) {
         Router.router.abortComponentLoad();
       }
-    }, 0);
+    });
   });
 });
 
