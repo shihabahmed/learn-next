@@ -3,20 +3,6 @@ import Head from 'next/head';
 import Nav from './Nav';
 import Footer from './Footer';
 
-import Router from 'next/router';
-import { Guards } from '../route-guards/guard.config';
-
-Router.ready(() => {
-  Router.router.events.on('routeChangeStart', (url) => {
-    setTimeout(() => {
-      const { canActivate } = Guards.check(url, JSON.stringify(Router));
-      if (!canActivate) {
-        Router.router.abortComponentLoad();
-      }
-    });
-  });
-});
-
 class Layout extends Component {
   render() {
     return (
