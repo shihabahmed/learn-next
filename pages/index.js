@@ -1,7 +1,21 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import { useEffect } from 'react';
+import styles from '../styles/Home.module.css';
+import { MessagingSocketService } from '../services/messagingSocket.service';
 
 export default function Home() {
+  let messagingSocket = new MessagingSocketService();
+  let conn;
+
+  useEffect(() => {
+    messagingSocket.init();
+    conn = messagingSocket.connection;
+    console.log(conn);
+    messagingSocket.connection.onMessageReceived = (message) => {
+      console.log(message);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -49,5 +63,5 @@ export default function Home() {
         </div>
       </main>
     </div>
-  )
+  );
 }
