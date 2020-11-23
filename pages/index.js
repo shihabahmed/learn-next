@@ -5,15 +5,11 @@ import { MessagingSocketService } from '../services/messagingSocket.service';
 
 export default function Home() {
   let messagingSocket = new MessagingSocketService();
-  let conn;
 
   useEffect(() => {
-    messagingSocket.init();
-    conn = messagingSocket.connection;
-    console.log(conn);
-    messagingSocket.connection.onMessageReceived = (message) => {
+    messagingSocket.init((message) => {
       console.log(message);
-    };
+    });
   }, []);
 
   return (
