@@ -88,7 +88,9 @@ module.exports = [
     },
     {
         urlPattern: /\/api\/.*$/i,
-        handler: 'NetworkFirst',
+        // handler: 'NetworkFirst',
+        // handler: 'StaleWhileRevalidate',
+        handler: 'CacheFirst',
         method: 'GET',
         options: {
             cacheName: 'apis',
@@ -96,7 +98,7 @@ module.exports = [
                 maxEntries: 16,
                 maxAgeSeconds: 24 * 60 * 60, // 24 hours
             },
-            networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
+            // networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
         },
     },
     {
