@@ -1,8 +1,8 @@
 // import '../styles/globals.css';
 import Layout from '../components/Layout';
 
-import Router from 'next/router';
-import { Guards } from '../route-guards/guard.config';
+// import Router from 'next/router';
+// import { Guards } from '../route-guards/guard.config';
 
 // const checkRoute = (url) => {
 //   setTimeout(() => {
@@ -21,20 +21,21 @@ import { Guards } from '../route-guards/guard.config';
 // });
 
 function MyApp({ Component, pageProps }) {
-  const { canActivate, redirect } = Guards.check(Component.name);
-  if (!canActivate) {
-    // Router.router.abortComponentLoad();
-    if (redirect) {
-      Router.push(redirect);
-    } else {
-      Router.back();
-    }
-  }
+  // let { canActivate, redirect } = Guards.check(Component.name);
+  // if (!canActivate) {
+  //   // Router.router.abortComponentLoad();
+  //   if (redirect) {
+  //     Router.push(redirect);
+  //   } else {
+  //     Router.back();
+  //   }
+  // }
 
   return (
     <>
       <Layout>
-        {canActivate && <Component {...pageProps} />}
+        {/* {canActivate && <Component {...pageProps} />} */}
+        <Component {...pageProps} />
       </Layout>
     </>
   );

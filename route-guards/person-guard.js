@@ -1,6 +1,7 @@
 const PersonGuard = () => {
   return {
-    canActivate: JSON.parse(localStorage.getItem('person') || 'false')
+    canActivate: JSON.parse(localStorage.getItem('person') || 'false'),
+    redirect: '/people'
   };
 }
 

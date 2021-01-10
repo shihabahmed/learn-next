@@ -23,16 +23,13 @@ const Guards = {
   //   return guard();
   // },
   check: (component) => {
-    const { guard } = Guards.routes.find((c) => c.component === component) || {
-      guard: () => ({ canActivate: true }),
-    };
+    let guard = () => ({ canActivate: true, redirect: '/'});
+    if (typeof window !== 'undefined') {
+      const {_guard} = Guards.routes.find((c) => c.component === component);
+      guard = _guard || guard;
+    }
 
-    const result = guard();
-    // if (!result.redirect) {
-    //   result['redirect'] = '.';
-    // }
-
-    return result;
+    return guard();
   },
 };
 
